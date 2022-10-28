@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#FFEDEDED">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="35">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"/>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="2">
+
+			<ImageView
+				android:src="@drawable/zcbl6"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:visibility="invisible"/>
+
+			<ImageView
+				android:src="@drawable/zcbl7"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:onClick="BackFrontPage"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="10">
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="10"
+			android:gravity="left">
+
+			<ImageView
+				android:src="@drawable/logo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+
+		</LinearLayout>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="5">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="95"/>
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="3">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="功能性"
+							android:textSize="25sp"
+							android:textColor="#FF000000"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="18"/>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:gravity="left"
+							android:layout_weight="10">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="自动打开悬浮窗"
+									android:textSize="18sp"
+									android:textColor="#FF000000"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<com.sd.lib.switchbutton.FSwitchButton
+									android:id="@+id/APPSettingLayout_A"
+									android:layout_width="45dp"
+									android:layout_height="20dp"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:gravity="left"
+							android:layout_weight="10">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="自动获取更新"
+									android:textSize="18sp"
+									android:textColor="#FF000000"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<com.sd.lib.switchbutton.FSwitchButton
+									android:id="@+id/APPSettingLayout_B"
+									android:layout_width="45dp"
+									android:layout_height="20dp"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="20dp">
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="95"/>
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="3">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="御坂网络"
+							android:textSize="25sp"
+							android:textColor="#FF000000"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="18"/>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="10"
+							android:gravity="left|center">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:gravity="center"
+								android:layout_weight="20">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="专属密码 ："
+									android:textColor="#FF000000"
+									android:textSize="18sp"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<EditText
+									android:layout_width="match_parent"
+									android:inputType="textPassword"
+									android:layout_height="wrap_content"
+									android:textIsSelectable="false"
+									android:id="@+id/APPSettingLayoutPassword"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="10"
+							android:gravity="left|center">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:gravity="center"
+								android:layout_weight="20">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="游戏昵称 ："
+									android:textColor="#FF000000"
+									android:textSize="18sp"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<EditText
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:id="@+id/APPSettingLayoutUserName"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="18"/>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="10"
+							android:gravity="left">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="13">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="御坂网络"
+									android:textSize="18sp"
+									android:textColor="#FF000000"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="15">
+
+								<com.sd.lib.switchbutton.FSwitchButton
+									android:id="@+id/APPSettingLayout_C"
+									android:layout_width="45dp"
+									android:layout_height="20dp"/>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_weight="10">
+
+								<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="FCN"
+									android:textColor="#FF000000"
+									android:textSize="18sp"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_weight="10"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="10"
+			android:gravity="right|center">
+
+			<ImageView
+				android:src="@drawable/ljyy"
+				android:layout_width="200dp"
+				android:layout_height="wrap_content"
+				android:onClick="AppSettingUse"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+
