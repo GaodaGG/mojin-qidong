@@ -6,13 +6,13 @@ android {
 
     signingConfigs {
         release {
-            File storeFile file('/jks/GaodaGG.jks')
+            storeFile file('./jks/GaodaGG.jks')
             storePassword "GaodaGG"
             keyAlias "GaodaGG"
             keyPassword "GaodaGG"
         }
         debug {
-            File storeFile file('/jks/GaodaGG.jks')
+            storeFile file('./jks/GaodaGG.jks')
             storePassword "GaodaGG"
             keyAlias "GaodaGG"
             keyPassword "GaodaGG"
