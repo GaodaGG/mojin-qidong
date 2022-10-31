@@ -10,6 +10,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 import androidx.core.app.NotificationManagerCompat;
+import com.mojin.qidon.Keystore.SignatureVerifier;
 import com.mojin.qidon.StartServer.ServerA;
 import com.mojin.qidon.StartServer.ServerB;
 import com.mojin.qidon.StartServer.ServerC;
@@ -127,6 +128,19 @@ public class StartUpMap {
         } catch (Exception e) {
             AppNotification.error(context, ErrorGet.Log(e));
         }
+        
+        /*
+         *签名校验
+         */
+         try{
+             SignatureVerifier.verify();
+             if(!SignatureVerifier.isMySignature){
+                 Toast.makeText(context,"检测到应用被修改",Toast.LENGTH_SHORT).show();
+             }
+         } catch (Exception e){
+             AppNotification.error(context,ErrorGet.Log(e));
+         }
+         
     }
 }
 
