@@ -46,3 +46,8 @@
  
  # 避免混淆泛型，这在JSON实体映射时非常重要，比如fastJson
 -keepattributes Signature
+
+#混淆字典
+-obfuscationdictionary dic.txt
+-classobfuscationdictionary dic.txt
+-packageobfuscationdictionary dic.txt
