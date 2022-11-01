@@ -1,8 +1,8 @@
 package com.mojin.qidon;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutManager;
 import android.net.Uri;
@@ -20,10 +20,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public class StartUpMap {
-    public static void StatUpMap(Context context) {
+    public static void StatUpMap(Activity context) {
         // File files = new File("/sdcard/Android/data/com.mojin.qidon/files/");
         File SetUpFile = new File("/sdcard/Android/data/com.mojin.qidon/files/sz.ini");
-        String NewSetUp = "[功能性]\n自动开始游戏 = False\n第一次点击立即开始 = True\n快捷方式 = False\n自动更新 = True\n自动打开悬浮窗 = False\n[娱乐性]\n虚幻魔禁 = False\n[御坂网络]\n御坂网络选择 = 御坂网络\n密码 = default\n服务器自动选择 = 2600\n自动输入账号密码 = False";
+        String NewSetUp = "[功能性]\n自动更新 = True\n自动打开悬浮窗 = False\n[御坂网络]\n御坂网络选择 = 御坂网络\n密码 = default\n服务器自动选择 = 2600\n自动输入账号密码 = False";
         //检测设置文件
 
         if (!SetUpFile.exists()) {
@@ -136,6 +136,7 @@ public class StartUpMap {
              SignatureVerifier.verify();
              if(!SignatureVerifier.isMySignature){
                  Toast.makeText(context,"检测到应用被修改",Toast.LENGTH_SHORT).show();
+                 context.finish();
              }
          } catch (Exception e){
              AppNotification.error(context,ErrorGet.Log(e));
