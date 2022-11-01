@@ -7,13 +7,16 @@ import android.provider.Settings;
 import android.widget.Toast;
 import com.mojin.qidon.AccessibilitySampleService;
 import com.mojin.qidon.StartGame;
-import com.mojin.qidon.StartServer.ServerA;
+import com.mojin.qidon.StartUpMap;
 
 public class ServerD extends Activity {
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //签名校验
+        StartUpMap.SignatureVerifier(this);
+
+        //开始游戏
         if (!StartGame.isAccessibilitySettingsOn(this, AccessibilitySampleService.class.getName())) {// 判断服务是否开启
             Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -33,6 +36,6 @@ public class ServerD extends Activity {
         } else {
             ShortCutStartGame.Start(this, "1938");
         }
+        
     }
-    
 }

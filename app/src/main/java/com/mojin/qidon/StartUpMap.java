@@ -129,19 +129,23 @@ public class StartUpMap {
             AppNotification.error(context, ErrorGet.Log(e));
         }
         
-        /*
-         *签名校验
-         */
-         try{
-             SignatureVerifier.verify();
-             if(!SignatureVerifier.isMySignature){
-                 Toast.makeText(context,"检测到应用被修改",Toast.LENGTH_SHORT).show();
-                 context.finish();
-             }
-         } catch (Exception e){
-             AppNotification.error(context,ErrorGet.Log(e));
-         }
-         
+        //签名校验
+        SignatureVerifier(context);
+    }
+    
+    /*
+     *签名校验
+     */
+    public static void SignatureVerifier(Activity context){
+        try{
+            SignatureVerifier.verify();
+            if(!SignatureVerifier.isMySignature){
+                Toast.makeText(context,"检测到应用被修改,请从Q群526776697下载",Toast.LENGTH_SHORT).show();
+                context.finish();
+            }
+        } catch (Exception e){
+            AppNotification.error(context,ErrorGet.Log(e));
+        }
     }
 }
 
