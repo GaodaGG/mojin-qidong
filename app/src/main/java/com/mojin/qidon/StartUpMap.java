@@ -139,7 +139,9 @@ public class StartUpMap {
     public static void SignatureVerifier(Activity context){
         try{
             SignatureVerifier.verify();
-            if(!SignatureVerifier.isMySignature){
+            boolean ApplicationHook = SignatureVerifier.checkApplication(context);
+            
+            if(!SignatureVerifier.isMySignature || !ApplicationHook){
                 Toast.makeText(context,"检测到应用被修改,请从Q群526776697下载",Toast.LENGTH_SHORT).show();
                 context.finish();
             }

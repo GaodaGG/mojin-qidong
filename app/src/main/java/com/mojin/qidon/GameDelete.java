@@ -20,8 +20,8 @@ public class GameDelete {
         String SaveDataPath = "/storage/emulated/0/PSP/SAVEDATA/ULJS00329DATA00/";
 
 
-        if (GlobalVariable.Countdown != 0) {
-            Toast.makeText(context, "在" + String.valueOf(GlobalVariable.Countdown) + "秒后可以再次尝试", Toast.LENGTH_SHORT).show();
+        if (((MainApplication)context.getApplication()).Countdown != 0) {
+            Toast.makeText(context, "在" + String.valueOf(((MainApplication)context.getApplication()).Countdown) + "秒后可以再次尝试", Toast.LENGTH_SHORT).show();
         } else {
             //删除游戏本体
             if (GameISOChecked) {
@@ -100,13 +100,13 @@ public class GameDelete {
             }
 
             //CD限制
-            GlobalVariable.Countdown = 15;
+            ((MainApplication)context.getApplication()).Countdown = 15;
             new Thread(new Runnable(){
                     @Override
                     public void run() {
                         try {
                             for (int i = 1 ;i <= 15 ;i++) {
-                                GlobalVariable.Countdown--;
+                                ((MainApplication)context.getApplication()).Countdown--;
                                 Thread.sleep(1000);
                             }
                         } catch (Exception e) {

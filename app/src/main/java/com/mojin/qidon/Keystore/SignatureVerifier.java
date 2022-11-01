@@ -1,5 +1,8 @@
 package com.mojin.qidon.Keystore;
 
+import android.app.Activity;
+import android.app.Application;
+
 public class SignatureVerifier {
     public static String V2_SHA256 = null;
     public static String V3_SHA256 = null;
@@ -25,5 +28,15 @@ public class SignatureVerifier {
                 isMySignature = isMySignature && FuckYou.isFucking(v3sha256, mySignatureSHA256);
             }
         }
+    }
+    
+    /**
+     * 校验 application
+     */
+     public static boolean checkApplication(Activity context){
+        Application nowApplication = context.getApplication();
+        String trueApplicationName = "MainApplication";
+        String nowApplicationName = nowApplication.getClass().getSimpleName();
+        return trueApplicationName.equals(nowApplicationName);
     }
 }

@@ -30,8 +30,8 @@ public class GamePackage {
         boolean StoryChecked = StoryGamePackage.isChecked();
         boolean ModelChecked = ModelGamePackage.isChecked();
 
-        if (GlobalVariable.Countdown != 0) {
-            Toast.makeText(context, "在" + String.valueOf(GlobalVariable.Countdown) + "秒后可以再次尝试", Toast.LENGTH_SHORT).show();
+        if (((MainApplication)context.getApplication()).Countdown != 0) {
+            Toast.makeText(context, "在" + String.valueOf(((MainApplication)context.getApplication()).Countdown) + "秒后可以再次尝试", Toast.LENGTH_SHORT).show();
         } else {
             //下载超清底包
             if (SuperChecked) {
@@ -371,13 +371,13 @@ public class GamePackage {
 
 
             //CD限制
-            GlobalVariable.Countdown = 15;
+            ((MainApplication)context.getApplication()).Countdown = 15;
             new Thread(new Runnable(){
                     @Override
                     public void run() {
                         try {
                             for (int i = 1 ;i <= 15 ;i++) {
-                                GlobalVariable.Countdown--;
+                                ((MainApplication)context.getApplication()).Countdown--;
                                 Thread.sleep(1000);
                             }
                         } catch (Exception e) {
