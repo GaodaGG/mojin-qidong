@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation;
+import com.lzf.easyfloat.EasyFloat;
 
 public class FrontPage extends Activity {
     private long firstBackTime;
@@ -89,7 +90,7 @@ public class FrontPage extends Activity {
         }
         OnWindowEnd = true;
     }
-    
+
 
     //画质设置
     public void QualitySettings(View view) {
@@ -296,7 +297,11 @@ public class FrontPage extends Activity {
                 Toast.makeText(this, "让我看看…悬浮窗权限好像没开？！开好了就返回启动姬吧", Toast.LENGTH_SHORT).show();
                 startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 0);
             } else {
-                PingFloatingWindow.start(this);
+                if (!EasyFloat.isShow("PingFloat")) {
+                    PingFloatingWindow.start(this);
+                } else {
+                    PingFloatingWindow.stop(this);
+                }
             }
         }
 
