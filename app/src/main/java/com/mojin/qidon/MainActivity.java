@@ -45,23 +45,23 @@ public class MainActivity extends Activity {
 
         //检查是否有所有文件权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-          // 先判断有没有权限
-          if (!Environment.isExternalStorageManager()) { //判断是否获取到“允许管理所有文件”权限
-              //请求“允许管理所有文件”权限
-              Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-              intent.setData(Uri.parse("package:" + getPackageName()));
-              startActivityForResult(intent, PERMISSION_REQUEST);
-              Toast.makeText(this, "请给予权限", Toast.LENGTH_SHORT).show();
-          }
-      }
-        
+            // 先判断有没有权限
+            if (!Environment.isExternalStorageManager()) { //判断是否获取到“允许管理所有文件”权限
+                //请求“允许管理所有文件”权限
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, PERMISSION_REQUEST);
+                Toast.makeText(this, "请给予权限", Toast.LENGTH_SHORT).show();
+            }
+        }
+
         //开始代码
         try {
             StartUpMap.StatUpMap(this);
         } catch (Exception e) {
             AppNotification.error(this, ErrorGet.Log(e));
         }
-        
+
     }
 
     //载入完毕事件
@@ -85,12 +85,14 @@ public class MainActivity extends Activity {
     //检查权限
     private void checkPermission() {
         mPermissionList.clear();
+
         //判断哪些权限未授予
         for (int i = 0; i < permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
                 mPermissionList.add(permissions[i]);
             }
         }
+
         /**
          * 判断是否为空
          */
@@ -101,5 +103,16 @@ public class MainActivity extends Activity {
         }
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            } else {
+                Toast.makeText(getApplication(), "请在设置中给予应用存储权限", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
 }
