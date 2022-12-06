@@ -50,35 +50,6 @@ public class StartUpMap {
             AppNotification.error(context, ErrorGet.Log(e));
         }
 
-
-        //检测通知权限
-        try {
-            NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-            // areNotificationsEnabled方法的有效性官方只最低支持到API 19，低于19的仍可调用此方法不过只会返回true，即默认为用户已经开启了通知。
-            boolean isOpened = manager.areNotificationsEnabled();
-            if (!isOpened) {
-                Toast.makeText(context, "检测到没有给予通知权限，请先给予权限", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                if (Build.VERSION.SDK_INT >= 26) {
-                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                    intent.putExtra(Notification.EXTRA_CHANNEL_ID, context.getApplicationInfo().uid);
-                } else if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT <= 25) {
-                    intent.putExtra("app_package", context.getPackageName());
-                    intent.putExtra("app_uid", context.getApplicationInfo().uid);
-                }
-                context.startActivity(intent);
-            }
-        } catch (Exception e) {
-            Intent intent = new Intent();
-            //下面这种方案是直接跳转到当前应用的设置界面。
-            //https://blog.csdn.net/ysy950803/article/details/71910806
-            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            Uri uri = Uri.fromParts("package", context.getPackageName(), null);
-            intent.setData(uri);
-            context.startActivity(intent);
-        }
-
         /*
          *检查通知渠道
          */
@@ -115,7 +86,7 @@ public class StartUpMap {
             String[] ShortCutShortID = {"ServerA", "ServerB", "ServerC", "ServerD"};
             String[] ShortCutLabel = {"从2600互锤", "从5000互锤", "从1114互锤", "从1938互锤"};
             int[] ShortCutIcon = {R.drawable.shortcut_2600, R.drawable.shortcut_5000, R.drawable.shortcut_1114, R.drawable.shortcut_1938};
-            
+
             if (shortcutManager.getDynamicShortcuts().size() < 4) {
                 for (int i = 0; i < ShortCutShortID.length; i++) {
                     ShortCut.AddShortCut(context, ShortCutClass[i], ShortCutLabel[i], ShortCutShortID[i], ShortCutIcon[i]);
@@ -128,25 +99,25 @@ public class StartUpMap {
         } catch (Exception e) {
             AppNotification.error(context, ErrorGet.Log(e));
         }
-        
+
         //签名校验
         SignatureVerifier(context);
     }
-    
+
     /*
      *签名校验
      */
-    public static void SignatureVerifier(Activity context){
-        try{
+    public static void SignatureVerifier(Activity context) {
+        try {
             SignatureVerifier.verify();
             boolean ApplicationHook = SignatureVerifier.checkApplication(context);
-            
-            if(!SignatureVerifier.isMySignature || !ApplicationHook){
-                Toast.makeText(context,"检测到应用被修改,请从Q群526776697下载",Toast.LENGTH_SHORT).show();
+
+            if (!SignatureVerifier.isMySignature || !ApplicationHook) {
+                Toast.makeText(context, "检测到应用被修改,请从Q群526776697下载", Toast.LENGTH_SHORT).show();
                 context.finish();
             }
-        } catch (Exception e){
-            AppNotification.error(context,ErrorGet.Log(e));
+        } catch (Exception e) {
+            AppNotification.error(context, ErrorGet.Log(e));
         }
     }
 }
