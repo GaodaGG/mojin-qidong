@@ -21,18 +21,16 @@ import com.zhangyue.we.x2c.X2C;
 import com.zhangyue.we.x2c.ano.Xml;
 import java.util.ArrayList;
 import java.util.List;
+import android.app.ActivityManager;
 
 public class MainActivity extends Activity {
 
-    String[] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, 
-        Manifest.permission.READ_MEDIA_IMAGES, 
-        Manifest.permission.READ_MEDIA_AUDIO, 
-        Manifest.permission.READ_MEDIA_VIDEO, 
-        Manifest.permission.POST_NOTIFICATIONS};
+    String[] permissions = new String[]{Manifest.permission.POST_NOTIFICATIONS};
 
     List<String> mPermissionList = new ArrayList<>();
     private static final int PERMISSION_REQUEST = 1;
     Boolean frequency = false;
+    public static List<Activity> activitylist = new ArrayList<Activity>();
 
     //载入事件
     @Override
@@ -59,7 +57,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 intent.setData(Uri.parse("package:" + getPackageName()));
                 startActivityForResult(intent, PERMISSION_REQUEST);
-                Toast.makeText(this, "请给予权限", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "启动姬需要所有文件权限来提供下载服务", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -109,7 +107,7 @@ public class MainActivity extends Activity {
             String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);//将List转为数组
             ActivityCompat.requestPermissions(MainActivity.this, permissions, PERMISSION_REQUEST);
             //SDK33以下申请通知权限
-            if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED)) {
+            if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) && Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                 NotificationPermission(this);
             }
         }
@@ -123,46 +121,58 @@ public class MainActivity extends Activity {
          */
         if (requestCode == PERMISSION_REQUEST) {
             if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
-                Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                    Toast.makeText(getApplication(), "请在设置中给予应用权限", Toast.LENGTH_SHORT).show();
-                    finish();
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                Environment.isExternalStorageManager())) {
+                Toast.makeText(getApplication(), "请在设置中给予应用权限", Toast.LENGTH_SHORT).show();
+                exitclient(this);
+
             }
-        }
+        } 
     }
+    // }
 
     /*
      *获取通知权限
      */
     private static void NotificationPermission(Activity context) {
         //检测通知权限
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {
-            try {
-                NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-                // areNotificationsEnabled方法的有效性官方只最低支持到API 19，低于19的仍可调用此方法不过只会返回true，即默认为用户已经开启了通知。
-                boolean isOpened = manager.areNotificationsEnabled();
-                if (!isOpened) {
-                    Toast.makeText(context, "检测到没有给予通知权限，请先给予权限", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                        intent.putExtra(Notification.EXTRA_CHANNEL_ID, context.getApplicationInfo().uid);
-                    } else if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT <= 25) {
-                        intent.putExtra("app_package", context.getPackageName());
-                        intent.putExtra("app_uid", context.getApplicationInfo().uid);
-                    }
-                    context.startActivity(intent);
-                }
-            } catch (Exception e) {
+        try {
+            NotificationManagerCompat manager = NotificationManagerCompat.from(context);
+            // areNotificationsEnabled方法的有效性官方只最低支持到API 19，低于19的仍可调用此方法不过只会返回true，即默认为用户已经开启了通知。
+            boolean isOpened = manager.areNotificationsEnabled();
+            if (!isOpened) {
+                Toast.makeText(context, "检测到没有给予通知权限，请先给予权限", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                //下面这种方案是直接跳转到当前应用的设置界面。
-                //https://blog.csdn.net/ysy950803/article/details/71910806
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", context.getPackageName(), null);
-                intent.setData(uri);
+                intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                if (Build.VERSION.SDK_INT >= 26) {
+                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+                    intent.putExtra(Notification.EXTRA_CHANNEL_ID, context.getApplicationInfo().uid);
+                } else if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT <= 25) {
+                    intent.putExtra("app_package", context.getPackageName());
+                    intent.putExtra("app_uid", context.getApplicationInfo().uid);
+                }
                 context.startActivity(intent);
             }
+        } catch (Exception e) {
+            Intent intent = new Intent();
+            //下面这种方案是直接跳转到当前应用的设置界面。
+            //https://blog.csdn.net/ysy950803/article/details/71910806
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+            intent.setData(uri);
+            context.startActivity(intent);
         }
+    }
+
+    public static void exitclient(Activity context) {
+        // 关闭所有activity
+        for (int i = 0; i < activitylist.size(); i++) {
+            if (null != activitylist.get(i)) {
+                activitylist.get(i).finish();
+            }
+        }
+        ActivityManager activitymgr = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
+        activitymgr.restartPackage(context.getPackageName());
+        System.exit(0);
     }
 }

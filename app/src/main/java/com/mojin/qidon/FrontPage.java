@@ -27,7 +27,6 @@ import com.lzf.easyfloat.EasyFloat;
 
 public class FrontPage extends Activity {
     private long firstBackTime;
-    private boolean OnWindowEnd = false;
     private String LayoutView = "WindowMain";
 
     @Override
@@ -56,7 +55,6 @@ public class FrontPage extends Activity {
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
             firstBackTime = System.currentTimeMillis();
             return;
-
         }
 
         super.onBackPressed();
@@ -66,7 +64,7 @@ public class FrontPage extends Activity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (!OnWindowEnd) {
+        if (!((MainApplication)getApplication()).onWindowEnd) {
             try {
                 //获取设置内容
                 FileInputStream in = new FileInputStream(new File("/sdcard/Android/data/com.mojin.qidon/files/sz.ini"));
@@ -84,11 +82,13 @@ public class FrontPage extends Activity {
                     //检测更新
                     ApkUpdate.update(this);
                 }
+                
+                
             } catch (Exception e) {
                 AppNotification.error(this, ErrorGet.Log(e));
             }
         }
-        OnWindowEnd = true;
+        ((MainApplication)getApplication()).onWindowEnd = true;
     }
 
 

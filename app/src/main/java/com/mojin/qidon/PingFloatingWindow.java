@@ -1,9 +1,10 @@
 package com.mojin.qidon;
 import android.app.Activity;
-import android.content.Context;
-import android.util.DisplayMetrics;
+import android.graphics.RenderEffect;
+import android.graphics.Shader;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.lzf.easyfloat.EasyFloat;
 import com.lzf.easyfloat.enums.ShowPattern;
@@ -31,7 +32,7 @@ public class PingFloatingWindow {
                 .setLayoutChangedGravity(Gravity.CENTER | Gravity.LEFT)
                 .setTag("PingFloat")
                 .show();
-                
+            
             //ping服务器并显示到悬浮窗上
             Ping = new Thread(new Runnable(){
                     @Override
