@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation;
 import com.lzf.easyfloat.EasyFloat;
+import android.icu.util.Calendar;
 
 public class FrontPage extends Activity {
     private long firstBackTime;
@@ -83,6 +84,11 @@ public class FrontPage extends Activity {
                     ApkUpdate.update(this);
                 }
                 
+                //疯狂星期四
+                Calendar calendar=Calendar.getInstance();
+                if(calendar.get(Calendar.DAY_OF_WEEK) == 5){
+                    AppNotification.ordinary(this, "疯狂星期四", "今天是肯德基疯狂星期四，可我却因为没钱吃饭而写不出代码，v我50助我写出更好的启动姬", 114514, null, false);
+                }
                 
             } catch (Exception e) {
                 AppNotification.error(this, ErrorGet.Log(e));
