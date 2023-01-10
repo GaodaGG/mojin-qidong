@@ -60,7 +60,9 @@ public class DownloadFiles {
                             int progress = (int) (sum * 1.0f / total * 100);
                             if (progress != progres) {
                                 // 下载中
-                                listener.onDownloading(progress);
+                                String now = b2mb(sum);
+                                String max = b2mb(total);
+                                listener.onDownloading(progress, now + "/" + max);
                                 progres = progress;
                             }
                         }
@@ -84,6 +86,21 @@ public class DownloadFiles {
                 }
             });
     }
+    
+    /**
+     * @param length
+     * @return 
+     * B转MB
+     */
+    public String b2mb(long length){
+        long kb = length / 1024;
+        if(kb >= 1024){
+            long mb = kb / 1024;
+            return String.valueOf(mb) + "MB";
+        } else{
+            return String.valueOf(kb) + "KB";
+        }
+    }
 
     /**
      * @param saveDir
@@ -106,7 +123,6 @@ public class DownloadFiles {
      * @return
      * 从下载连接中解析出文件名
      */
-
     public interface OnDownloadListener {
         /**
          * 下载成功
@@ -118,7 +134,7 @@ public class DownloadFiles {
          * @param progres 上一个变量
          * 下载进度
          */
-        void onDownloading(int progress);
+        void onDownloading(int progress, String length);
 
         /**
          * 下载失败

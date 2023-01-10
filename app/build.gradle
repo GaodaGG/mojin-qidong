@@ -31,8 +31,16 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            zipAlignEnabled true
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def fileName = "[手机]魔禁启动姬_${defaultConfig.versionName}.apk"
+                    outputFileName = fileName
+                }
+            }
         }
     }
     

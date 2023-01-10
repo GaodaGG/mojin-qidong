@@ -64,8 +64,8 @@ public class GameDownload {
 
                                         //下载进度
                                         @Override
-                                        public void onDownloading(int progress) {
-                                            AppNotification.update(context, "游戏本体", String.valueOf(progress) + "%", 0, progress);
+                                        public void onDownloading(int progress, String length) {
+                                            AppNotification.update(context, "游戏本体", length + " ● " + String.valueOf(progress) + "%", 0, progress);
                                         }
 
                                         //下载失败
@@ -189,8 +189,8 @@ public class GameDownload {
 
                                         //下载进度
                                         @Override
-                                        public void onDownloading(int progress) {
-                                            AppNotification.update(context, "御坂网络", String.valueOf(progress) + "%", 2, progress);
+                                        public void onDownloading(int progress, String length) {
+                                            AppNotification.update(context, "御坂网络", length + " ● " + String.valueOf(progress) + "%", 2, progress);
                                         }
 
                                         //下载失败
@@ -263,8 +263,8 @@ public class GameDownload {
 
                                         //下载进度
                                         @Override
-                                        public void onDownloading(int progress) {
-                                            AppNotification.update(context, "PSP模拟器", String.valueOf(progress) + "%", 3, progress);
+                                        public void onDownloading(int progress, String length) {
+                                            AppNotification.update(context, "PSP模拟器", length + " ● " + String.valueOf(progress) + "%", 3, progress);
                                         }
 
                                         //下载失败

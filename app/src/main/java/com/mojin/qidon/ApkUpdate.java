@@ -144,8 +144,8 @@ public class ApkUpdate {
 
                                                                                     //下载进度
                                                                                     @Override
-                                                                                    public void onDownloading(int progress) {
-                                                                                        AppNotification.update(context, "启动姬更新", String.valueOf(progress) + "%", 5, progress);
+                                                                                    public void onDownloading(int progress, String length) {
+                                                                                        AppNotification.update(context, "启动姬更新", length + " ● " + String.valueOf(progress) + "%", 5, progress);
                                                                                     }
 
                                                                                     //下载失败
