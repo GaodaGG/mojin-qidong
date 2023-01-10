@@ -38,6 +38,7 @@ public class DownloadFiles {
                     // 下载失败
                     listener.onDownloadFailed();
                 }
+                
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     InputStream is = null;

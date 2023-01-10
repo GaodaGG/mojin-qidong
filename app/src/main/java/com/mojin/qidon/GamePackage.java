@@ -114,6 +114,7 @@ public class GamePackage {
                                                         //发送通知
                                                         AppNotification.delete(context, 20);
                                                         AppNotification.ordinary(context, "超清底包", "下载成功！请到游戏里看看吧", 21, null, false);
+                                                        new File(path + "超清底包.zip").delete();
                                                     } catch (IOException e) {
                                                         AppNotification.error(context, ErrorGet.Log(e));
                                                     }
@@ -222,6 +223,7 @@ public class GamePackage {
                                                         //发送通知
                                                         AppNotification.delete(context, 22);
                                                         AppNotification.ordinary(context, "剧情包", "下载成功！请到游戏里看看吧", 23, null, false);
+                                                        new File(path + "剧情包.zip").delete();
                                                     } catch (IOException e) {
                                                         AppNotification.error(context, ErrorGet.Log(e));
                                                     }
@@ -330,6 +332,7 @@ public class GamePackage {
                                                         //发送通知
                                                         AppNotification.delete(context, 24);
                                                         AppNotification.ordinary(context, "模型包", "下载成功！请到游戏里看看吧", 25, null, false);
+                                                        new File(path + "模型包.zip").delete();
                                                     } catch (IOException e) {
                                                         AppNotification.error(context, ErrorGet.Log(e));
                                                     }

@@ -320,7 +320,7 @@ public class FrontPage extends Activity {
      *开始游戏相关
      */
     public void StartGame(View view) {
-        StartGame.StartGame(this);
+        StartGame.startGame(this);
 
         //震动
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);

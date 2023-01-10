@@ -77,7 +77,11 @@ public class AccessibilitySampleService extends AccessibilityService {
                 AccessibilityNodeInfo PassWordNode;
                 for (int i = 0; i < PassWord.size(); i++) {
                     PassWordNode = PassWord.get(i);
-                    changeInput(PassWordNode, FCNPassword);
+                    if (FCNServerName.equals("1938")) {
+                        changeInput(PassWordNode, "123456780");
+                    } else {
+                        changeInput(PassWordNode, FCNPassword);
+                    }
                 }
 
                 //开始连接
@@ -129,6 +133,4 @@ public class AccessibilitySampleService extends AccessibilityService {
         arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, text);
         info.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
     }
-
-
 }

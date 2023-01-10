@@ -27,7 +27,7 @@ public class StartGame {
     final static String api = "http://106.53.148.51:3100/api/fs/get";
     static View ServerView;
     static PopupWindow popupWindow;
-    public static void StartGame(final Activity context) {
+    public static void startGame(final Activity context) {
         try {
             //弹窗相关
             ServerView = context.getLayoutInflater().inflate(R.layout.selectserver, null);
