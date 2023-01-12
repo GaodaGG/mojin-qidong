@@ -21,12 +21,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.IOException;
 
 public class StartGame {
     //设置文件和目录的变量
     final static String api = "http://106.53.148.51:3100/api/fs/get";
-    static View ServerView;
-    static PopupWindow popupWindow;
+    private static View ServerView;
+    private static PopupWindow popupWindow;
+    public static String password;
     public static void startGame(final Activity context) {
         try {
             //弹窗相关
@@ -72,8 +74,28 @@ public class StartGame {
             ServerView.findViewById(R.id.SelectServerStart).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        try {
+                            //获取设置内容
+                            FileInputStream in = new FileInputStream(new File("/sdcard/Android/data/com.mojin.qidon/files/sz.ini"));
+                            byte Inputbyt[] = new byte[1024];
+                            int len = in.read(Inputbyt);
+                            String SetUpText = new String(Inputbyt, 0, len);
+                            in.close();
+                            //密码
+                            Pattern PassWordRegular = Pattern.compile("密码 = .*");
+                            Matcher PassWordMatcher = PassWordRegular.matcher(SetUpText);
+                            PassWordMatcher.find();
+                            String Password = PassWordMatcher.group(0);
+                            String PasswordA[] = Password.split("= ");
+                            password = PasswordA[1];
+                        } catch (IOException e) {}
+
+
+
                         if (!ServerA.isChecked() && !ServerB.isChecked() && !ServerC.isChecked() && !ServerD.isChecked()) {
                             start(context, ServerA, ServerB, ServerC, ServerD);
+                        } else if (password.equals("default")) {
+                            Toast.makeText(context, "请先到设置修改密码", Toast.LENGTH_SHORT).show();
                         } else {
                             if (!isAccessibilitySettingsOn(context, AccessibilitySampleService.class.getName())) {// 判断服务是否开启
                                 Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
