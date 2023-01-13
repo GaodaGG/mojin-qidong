@@ -23,8 +23,8 @@ android {
         applicationId "com.mojin.qidon"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 421
-        versionName "4.2.1"
+        versionCode 430
+        versionName "4.3.0"
     }
     
     buildTypes {
