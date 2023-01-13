@@ -41,7 +41,7 @@ public class GamePackage {
      * @param modelChecked 底包的开关
      * 获取开关选中状态
      */
-    public void getButtom(SwitchButton superChecked, SwitchButton storyChecked, SwitchButton modelChecked) {
+    public GamePackage(SwitchButton superChecked, SwitchButton storyChecked, SwitchButton modelChecked) {
         this.superChecked = superChecked.isChecked();
         this.storyChecked = storyChecked.isChecked();
         this.modelChecked = modelChecked.isChecked();
@@ -52,7 +52,6 @@ public class GamePackage {
      * @param 
      * 下载文件
      */
-     public class a{
     public void download(final Activity context, String path, String name) {
         //创建新线程
         new Thread(new Runnable(){
@@ -160,6 +159,5 @@ public class GamePackage {
                     }
                 }
             }).start();
-    }
     }
 }

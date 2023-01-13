@@ -25,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Animation;
 import com.lzf.easyfloat.EasyFloat;
 import android.icu.util.Calendar;
+import com.mojin.qidon.function.GamePackage;
 
 public class FrontPage extends Activity {
     private long firstBackTime;
@@ -241,8 +242,10 @@ public class FrontPage extends Activity {
         SwitchButton SuperGamePackage = findViewById(R.id.SuperGamePackage);
         SwitchButton StoryGamePackage = findViewById(R.id.StoryGamePackage);
         SwitchButton ModelGamePackage = findViewById(R.id.ModelGamePackage);
-        GamePackage.GamePackage(SuperGamePackage, StoryGamePackage, ModelGamePackage, this);
+       // GamePackage.GamePackage(SuperGamePackage, StoryGamePackage, ModelGamePackage, this);
 
+        GamePackage a =new GamePackage(SuperGamePackage,StoryGamePackage,ModelGamePackage);
+        
         //震动
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(100);

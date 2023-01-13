@@ -21,7 +21,6 @@ import java.io.FileOutputStream;
 
 public class StartUpMap {
     public static void StatUpMap(Activity context) {
-        // File files = new File("/sdcard/Android/data/com.mojin.qidon/files/");
         File SetUpFile = new File("/sdcard/Android/data/com.mojin.qidon/files/sz.ini");
         String NewSetUp = "[功能性]\n自动更新 = True\n自动打开悬浮窗 = False\n[御坂网络]\n御坂网络选择 = 御坂网络\n密码 = default\n服务器自动选择 = 2600\n自动输入账号密码 = False";
         //检测设置文件
@@ -37,17 +36,6 @@ public class StartUpMap {
             } catch (Exception e) {
                 AppNotification.error(context, ErrorGet.Log(e));
             }
-        }
-
-        //获取设置内容
-        try {
-            FileInputStream in = new FileInputStream(SetUpFile);
-            byte Inputbyt[] = new byte[1024];
-            int len = in.read(Inputbyt);
-            String SetUpText = new String(Inputbyt, 0, len);
-            in.close();
-        } catch (Exception e) {
-            AppNotification.error(context, ErrorGet.Log(e));
         }
 
         /*
