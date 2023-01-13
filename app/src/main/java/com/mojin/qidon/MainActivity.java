@@ -120,16 +120,13 @@ public class MainActivity extends Activity {
          *判断权限是否给予
          */
         if (requestCode == PERMISSION_REQUEST) {
-            if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                Environment.isExternalStorageManager())) {
+            if (!Environment.isExternalStorageManager()){
                 Toast.makeText(getApplication(), "请在设置中给予应用权限", Toast.LENGTH_SHORT).show();
-                exitclient(this);
+                //exitclient(this);
 
             }
         } 
     }
-    // }
 
     /*
      *获取通知权限
@@ -163,7 +160,7 @@ public class MainActivity extends Activity {
             context.startActivity(intent);
         }
     }
-
+/*
     public static void exitclient(Activity context) {
         // 关闭所有activity
         for (int i = 0; i < activitylist.size(); i++) {
@@ -175,4 +172,5 @@ public class MainActivity extends Activity {
         activitymgr.restartPackage(context.getPackageName());
         System.exit(0);
     }
+    */
 }
