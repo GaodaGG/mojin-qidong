@@ -40,29 +40,29 @@ public class MainActivity extends Activity {
         X2C.setContentView(this, R.layout.activity_main);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        //状态栏相关
-        ImmersionBar.with(this)
-            .hideBar(BarHide.FLAG_HIDE_BAR)
-            .init();
-
-        //调用检测权限
-        checkPermission();
-        super.onCreate(savedInstanceState);
-
-        //检查是否有所有文件权限
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // 先判断有没有权限
-            if (!Environment.isExternalStorageManager()) { //判断是否获取到“允许管理所有文件”权限
-                //请求“允许管理所有文件”权限
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent, PERMISSION_REQUEST);
-                Toast.makeText(this, "启动姬需要所有文件权限来提供下载服务", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        //开始代码
         try {
+            //状态栏相关
+            ImmersionBar.with(this)
+                .hideBar(BarHide.FLAG_HIDE_BAR)
+                .init();
+
+            //调用检测权限
+            checkPermission();
+            super.onCreate(savedInstanceState);
+
+            //检查是否有所有文件权限
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                // 先判断有没有权限
+                if (!Environment.isExternalStorageManager()) { //判断是否获取到“允许管理所有文件”权限
+                    //请求“允许管理所有文件”权限
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    startActivityForResult(intent, PERMISSION_REQUEST);
+                    Toast.makeText(this, "启动姬需要所有文件权限来提供下载服务", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            //开始代码
             StartUpMap.StatUpMap(this);
         } catch (Exception e) {
             AppNotification.error(this, ErrorGet.Log(e));
@@ -120,7 +120,7 @@ public class MainActivity extends Activity {
          *判断权限是否给予
          */
         if (requestCode == PERMISSION_REQUEST) {
-            if (!Environment.isExternalStorageManager()){
+            if (!Environment.isExternalStorageManager()) {
                 Toast.makeText(getApplication(), "请在设置中给予应用权限", Toast.LENGTH_SHORT).show();
                 //exitclient(this);
 
@@ -160,17 +160,17 @@ public class MainActivity extends Activity {
             context.startActivity(intent);
         }
     }
-/*
-    public static void exitclient(Activity context) {
-        // 关闭所有activity
-        for (int i = 0; i < activitylist.size(); i++) {
-            if (null != activitylist.get(i)) {
-                activitylist.get(i).finish();
-            }
-        }
-        ActivityManager activitymgr = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
-        activitymgr.restartPackage(context.getPackageName());
-        System.exit(0);
-    }
-    */
+    /*
+     public static void exitclient(Activity context) {
+     // 关闭所有activity
+     for (int i = 0; i < activitylist.size(); i++) {
+     if (null != activitylist.get(i)) {
+     activitylist.get(i).finish();
+     }
+     }
+     ActivityManager activitymgr = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
+     activitymgr.restartPackage(context.getPackageName());
+     System.exit(0);
+     }
+     */
 }

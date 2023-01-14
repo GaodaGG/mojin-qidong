@@ -244,7 +244,8 @@ public class FrontPage extends Activity {
         SwitchButton ModelGamePackage = findViewById(R.id.ModelGamePackage);
        // GamePackage.GamePackage(SuperGamePackage, StoryGamePackage, ModelGamePackage, this);
 
-        GamePackage a =new GamePackage(SuperGamePackage,StoryGamePackage,ModelGamePackage);
+        GamePackage gamePackage =new GamePackage(SuperGamePackage,StoryGamePackage,ModelGamePackage,this);
+        gamePackage.start();
         
         //震动
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
