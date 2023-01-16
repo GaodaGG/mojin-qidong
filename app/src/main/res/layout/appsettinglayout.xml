@@ -4,7 +4,7 @@
 	android:orientation="horizontal"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="#FFEDEDED">
+	android:background="@color/background">
 
 	<LinearLayout
 		android:orientation="vertical"
@@ -81,7 +81,7 @@
 							android:layout_height="wrap_content"
 							android:text="功能性"
 							android:textSize="25sp"
-							android:textColor="#FF000000"/>
+							android:textColor="@color/textColor"/>
 
 					</LinearLayout>
 
@@ -122,7 +122,7 @@
 									android:layout_height="wrap_content"
 									android:text="自动打开悬浮窗"
 									android:textSize="18sp"
-									android:textColor="#FF000000"/>
+									android:textColor="@color/textColor"/>
 
 							</LinearLayout>
 
@@ -159,7 +159,7 @@
 									android:layout_height="wrap_content"
 									android:text="自动获取更新"
 									android:textSize="18sp"
-									android:textColor="#FF000000"/>
+									android:textColor="@color/textColor"/>
 
 							</LinearLayout>
 
@@ -205,7 +205,7 @@
 							android:layout_height="wrap_content"
 							android:text="御坂网络"
 							android:textSize="25sp"
-							android:textColor="#FF000000"/>
+							android:textColor="@color/textColor"/>
 
 					</LinearLayout>
 
@@ -246,7 +246,7 @@
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
 									android:text="专属密码 ："
-									android:textColor="#FF000000"
+									android:textColor="@color/textColor"
 									android:textSize="18sp"/>
 
 							</LinearLayout>
@@ -262,6 +262,8 @@
 									android:inputType="textPassword"
 									android:layout_height="wrap_content"
 									android:textIsSelectable="false"
+                                    android:textColor="@color/textColor"
+                                    android:theme="@style/SettingEditText"
 									android:id="@+id/APPSettingLayoutPassword"/>
 
 							</LinearLayout>
@@ -286,7 +288,7 @@
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
 									android:text="游戏昵称 ："
-									android:textColor="#FF000000"
+									android:textColor="@color/textColor"
 									android:textSize="18sp"/>
 
 							</LinearLayout>
@@ -300,7 +302,9 @@
 								<EditText
 									android:layout_width="match_parent"
 									android:layout_height="wrap_content"
-									android:id="@+id/APPSettingLayoutUserName"/>
+									android:id="@+id/APPSettingLayoutUserName"
+                                    android:theme="@style/SettingEditText"
+                                    android:textColor="@color/textColor"/>
 
 							</LinearLayout>
 
@@ -345,7 +349,7 @@
 									android:layout_height="wrap_content"
 									android:text="御坂网络"
 									android:textSize="18sp"
-									android:textColor="#FF000000"/>
+									android:textColor="@color/textColor"/>
 
 							</LinearLayout>
 
@@ -372,7 +376,7 @@
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
 									android:text="FCN"
-									android:textColor="#FF000000"
+									android:textColor="@color/textColor"
 									android:textSize="18sp"/>
 
 							</LinearLayout>

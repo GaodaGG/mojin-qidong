@@ -10,22 +10,22 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
+import com.lzf.easyfloat.EasyFloat;
+import com.mojin.qidon.function.GamePackage;
 import com.sd.lib.switchbutton.SwitchButton;
 import com.zhangyue.we.x2c.X2C;
 import com.zhangyue.we.x2c.ano.Xml;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Animation;
-import com.lzf.easyfloat.EasyFloat;
-import android.icu.util.Calendar;
-import com.mojin.qidon.function.GamePackage;
 
 public class FrontPage extends Activity {
     private long firstBackTime;

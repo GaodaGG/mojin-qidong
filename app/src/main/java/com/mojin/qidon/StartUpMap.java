@@ -69,19 +69,21 @@ public class StartUpMap {
          *添加快捷方式
          */
         try {
-            ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
-            Class[] ShortCutClass = {ServerA.class, ServerB.class, ServerC.class, ServerD.class};
-            String[] ShortCutShortID = {"ServerA", "ServerB", "ServerC", "ServerD"};
-            String[] ShortCutLabel = {"从2600互锤", "从5000互锤", "从1114互锤", "从1938互锤"};
-            int[] ShortCutIcon = {R.drawable.shortcut_2600, R.drawable.shortcut_5000, R.drawable.shortcut_1114, R.drawable.shortcut_1938};
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
+                Class[] ShortCutClass = {ServerA.class, ServerB.class, ServerC.class, ServerD.class};
+                String[] ShortCutShortID = {"ServerA", "ServerB", "ServerC", "ServerD"};
+                String[] ShortCutLabel = {"从2600互锤", "从5000互锤", "从1114互锤", "从1938互锤"};
+                int[] ShortCutIcon = {R.drawable.shortcut_2600, R.drawable.shortcut_5000, R.drawable.shortcut_1114, R.drawable.shortcut_1938};
 
-            if (shortcutManager.getDynamicShortcuts().size() < 4) {
-                for (int i = 0; i < ShortCutShortID.length; i++) {
-                    ShortCut.AddShortCut(context, ShortCutClass[i], ShortCutLabel[i], ShortCutShortID[i], ShortCutIcon[i]);
-                }
-            } else {
-                for (int i = 0; i < ShortCutShortID.length; i++) {
-                    ShortCut.UpdateShortCut(context, ShortCutClass[i], ShortCutLabel[i], ShortCutShortID[i], ShortCutIcon[i]);
+                if (shortcutManager.getDynamicShortcuts().size() < 4) {
+                    for (int i = 0; i < ShortCutShortID.length; i++) {
+                        ShortCut.AddShortCut(context, ShortCutClass[i], ShortCutLabel[i], ShortCutShortID[i], ShortCutIcon[i]);
+                    }
+                } else {
+                    for (int i = 0; i < ShortCutShortID.length; i++) {
+                        ShortCut.UpdateShortCut(context, ShortCutClass[i], ShortCutLabel[i], ShortCutShortID[i], ShortCutIcon[i]);
+                    }
                 }
             }
         } catch (Exception e) {

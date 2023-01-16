@@ -42,6 +42,14 @@ android {
                 }
             }
         }
+        
+        debug{
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            signingConfig signingConfigs.config
+            
+        }
     }
     
     compileOptions {

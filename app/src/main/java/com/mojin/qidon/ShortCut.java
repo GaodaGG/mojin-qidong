@@ -1,5 +1,4 @@
 package com.mojin.qidon;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;

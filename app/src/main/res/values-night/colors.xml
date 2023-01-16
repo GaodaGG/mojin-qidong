@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlack">#FF000000</color>
     
-    <color name="background">#FFEDEDED</color>
-    <color name="rightSidebar">#FFDFDFDF</color>
-    <color name="textColor">#FF000000</color>
+    <color name="background">#FF262629</color>
+    <color name="rightSidebar">#FF323232</color>
+    <color name="textColor">#FFFFFFFF</color>
 </resources>
