@@ -1,0 +1,216 @@
+plugins {
+	id 'com.gladed.androidgitversion' version '0.4.5'
+	id 'org.jetbrains.kotlin.android'
+}
+apply plugin: 'com.android.application'
+
+androidGitVersion {
+	codeFormat = "MNNPPBBBB"
+	format = "%tag%%-count%%-branch%%-dirty%"
+	prefix = "v"  // Only tags beginning with v are considered.
+	untrackedIsDirty = false
+}
+
+dependencies {
+	//全局异常捕获：https://github.com/liangdepeng/CatchCrashLib
+	implementation 'com.github.liangdepeng:CatchCrashLib:v1.1'
+	// 封神状态栏：https://github.com/gyf-dev/ImmersionBar
+	implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+
+	implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+	implementation 'androidx.activity:activity-compose:1.5.1'
+	implementation platform('androidx.compose:compose-bom:2022.10.00')
+	implementation 'androidx.compose.ui:ui'
+	implementation 'androidx.compose.ui:ui-graphics'
+	implementation 'androidx.compose.ui:ui-tooling-preview'
+	implementation 'androidx.compose.material3:material3'
+	androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+	androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+	def appcompat_version = "1.2.0"
+
+	implementation "androidx.appcompat:appcompat:$appcompat_version"
+
+	// Convenient wrapper around DocumentContract. Might look into writing our own
+	// to see if there's some performance to squeeze at some point, but doubt it.
+	implementation "androidx.documentfile:documentfile:1.0.1"
+	debugImplementation 'androidx.compose.ui:ui-tooling'
+	debugImplementation 'androidx.compose.ui:ui-test-manifest'
+}
+
+android {
+	flavorDimensions "variant"
+	namespace 'com.mojin.qidong'
+	signingConfigs {
+		release {
+			storeFile file('D:\\GaodaGG.jks')
+			storePassword 'GaodaGG'
+			keyAlias 'GaodaGG'
+			keyPassword 'GaodaGG'
+		}
+	}
+
+	compileSdkVersion 33
+	ndkVersion "21.4.7075529"
+
+	defaultConfig {
+		applicationId 'com.mojin.qidong'
+		versionName "5.0.0"
+		versionCode 500
+
+		new File("versionname.txt").write("5.0.0")
+		new File("versioncode.txt").write("500")
+
+		minSdkVersion 21
+		targetSdkVersion 33
+		signingConfig signingConfigs.debug
+	}
+
+	buildTypes {
+		debug {
+			minifyEnabled = false
+			jniDebuggable true
+			signingConfig signingConfigs.debug
+		}
+		optimized {
+			// Debug signed but optimized.
+			minifyEnabled = false
+			jniDebuggable true
+			signingConfig android.buildTypes.debug.signingConfig
+		}
+		release {
+			minifyEnabled = false
+			signingConfig signingConfigs.release
+		}
+	}
+
+	externalNativeBuild {
+		cmake {
+			path '../CMakeLists.txt'
+		}
+	}
+	packagingOptions {
+		jniLibs {
+			excludes += ['lib/arm64-v8a/libopenxr_loader.so']
+		}
+		resources {
+			excludes += '/META-INF/{AL2.0,LGPL2.1}'
+		}
+	}
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+			res.srcDirs = ['res']
+			java.srcDirs = ['src']
+			aidl.srcDirs = ['src']
+			resources.srcDirs = ['src']
+			assets.srcDirs = [
+					'../assets',
+			]
+		}
+		gold {
+			res.srcDirs = ['gold/res']
+		}
+		vr {
+			jniLibs.srcDirs = ['../ext/openxr/android']
+			manifest.srcFile 'VRManifest.xml'
+		}
+	}
+	productFlavors {
+		normal {
+			applicationId 'com.mojin.qidong'
+			dimension "variant"
+			externalNativeBuild {
+				cmake {
+					// Available arguments listed at https://developer.android.com/ndk/guides/cmake.html
+					arguments '-DANDROID=true',
+							'-DANDROID_PLATFORM=android-16',
+							'-DANDROID_TOOLCHAIN=clang',
+							'-DANDROID_CPP_FEATURES=',
+							'-DANDROID_STL=c++_static',
+							'-DANDROID_ARM_NEON=TRUE'
+				}
+			}
+			ndk {
+				abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+			}
+		}
+		gold {
+			applicationId 'com.mojin.qidonggold'
+			dimension "variant"
+			externalNativeBuild {
+				cmake {
+					// Available arguments listed at https://developer.android.com/ndk/guides/cmake.html
+					arguments '-DANDROID=true',
+							'-DANDROID_PLATFORM=android-16',
+							'-DANDROID_TOOLCHAIN=clang',
+							'-DANDROID_CPP_FEATURES=',
+							'-DANDROID_STL=c++_static',
+							'-DANDROID_ARM_NEON=TRUE',
+							'-DGOLD=TRUE'
+				}
+			}
+			ndk {
+				abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+			}
+		}
+		vr {
+			applicationId 'com.mojin.qidongvr'
+			dimension "variant"
+			targetSdkVersion 29
+			externalNativeBuild {
+				cmake {
+					// Available arguments listed at https://developer.android.com/ndk/guides/cmake.html
+					arguments '-DANDROID=true',
+							'-DANDROID_PLATFORM=android-16',
+							'-DANDROID_TOOLCHAIN=clang',
+							'-DANDROID_CPP_FEATURES=',
+							'-DANDROID_STL=c++_static',
+							'-DANDROID_ARM_NEON=TRUE',
+							'-DOPENXR=TRUE'
+				}
+			}
+			ndk {
+				abiFilters 'arm64-v8a'
+			}
+		}
+	}
+	variantFilter { variant ->
+		def needed = variant.name in [
+				'normalDebug',        // for debugging
+				'normalOptimized',    // for testing
+				'normalRelease',    // for Google Play releases
+				'goldRelease',        // for Google Play releases
+				'vrDebug',            // for VR debugging
+				'vrOptimized',        // for VR testing
+				'vrRelease',        // for VR releases
+		]
+		variant.setIgnore(!needed)
+	}
+	buildFeatures {
+		aidl true
+		compose true
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	kotlinOptions {
+		jvmTarget = '1.8'
+	}
+	composeOptions {
+		kotlinCompilerExtensionVersion '1.3.2'
+	}
+}
+
+afterEvaluate {
+	android.sourceSets.main.assets.getSrcDirs().each { println it }
+}
+
+// F-Droid lite version can be created with : ./gradlew assembleOptimized -Pf_droid
+if (project.hasProperty("f_droid")) {
+	project.android.sourceSets.main.java.srcDirs += 'libs/MogaStubs'
+} else {
+	project.dependencies {
+		implementation files('libs/com.bda.controller.jar')
+	}
+}

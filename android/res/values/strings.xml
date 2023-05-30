@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, PpssppActivity!</string>
+    <string name="app_name">魔禁启动姬_Beta</string>
+    <string name="shortcut_name">PPSSPP game</string>
+
+    <string name="bad_disc_title">Unsupported disc</string>
+    <string name="bad_disc_message">The file you selected wasn\'t recognized as a game.</string>
+    <string name="title_activity_main">MainActivity</string>
+
+</resources>
