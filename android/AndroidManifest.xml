@@ -34,7 +34,8 @@ android:installLocation="auto">
 
 <!-- I tried using android:maxSdkVersion="29" on WRITE/READ_EXTERNAL_STORAGE, but that made
     it so that in legacy mode, you can't ask for permission anymore. So removed that. -->
-
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
