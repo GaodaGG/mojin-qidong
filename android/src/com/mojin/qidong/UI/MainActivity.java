@@ -1,4 +1,6 @@
-package com.mojin.qidong;
+package com.mojin.qidong.UI;
+
+import static com.mojin.qidong.function.Log.sendLog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +11,8 @@ import android.widget.LinearLayout;
 
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
-import com.mojin.qidong.function.AppNotification;
+import com.mojin.qidong.R;
+import com.mojin.qidong.function.Notification.AppNotification;
 
 import org.ppsspp.ppsspp.PpssppActivity;
 
@@ -25,13 +28,11 @@ public class MainActivity extends Activity {
 			ImmersionBar.with(this)
 					.hideBar(BarHide.FLAG_HIDE_BAR)
 					.init();
+
 			int b = 1/0;
 			AppNotification.NotificationPermission(this);
-
-
 		} catch (Exception e) {
-			String error = Log(e);
-			AppNotification.error(this, error);
+			sendLog(this, e);
 		}
 
 		LinearLayout start = findViewById(R.id.Activitymain_LinearLayout);
@@ -47,19 +48,5 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 			finish();
 		});
-	}
-
-	public static String Log(Throwable e) {
-		if (e != null) {
-			StackTraceElement[] stackTrace = e.getStackTrace();
-			int lineNumber = stackTrace[0].getLineNumber();
-			String methodName = stackTrace[0].getMethodName();
-
-			return "报错原因：" + e.getLocalizedMessage() + "\n"
-					+ "所在类：" + stackTrace[0].getClassName() + "\n"
-					+ "所在方法：" + methodName + "\n"
-					+ "所在行：" + lineNumber;
-		}
-		return "没有获取到报错";
 	}
 }

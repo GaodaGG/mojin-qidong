@@ -1,4 +1,4 @@
-package com.mojin.qidong.function;
+package com.mojin.qidong.function.Notification;
 
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
@@ -11,14 +11,9 @@ import android.widget.Toast;
 /**
  * 系统处理异常类，处理整个APP的异常
  */
-public class CrashExceptionHandler extends BroadcastReceiver {
-
+public class CopyReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		//Toast.makeText(context, intent.getStringExtra("errorText"), Toast.LENGTH_SHORT).show();
-		if (intent.getStringExtra("errorText") == null){
-			Toast.makeText(context, "悲", Toast.LENGTH_SHORT).show();
-		}
 		//获取剪贴板管理器
 		ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 		//创建普通字符型ClipData

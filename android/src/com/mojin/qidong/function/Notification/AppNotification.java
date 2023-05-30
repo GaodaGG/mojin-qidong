@@ -1,4 +1,4 @@
-package com.mojin.qidong.function;
+package com.mojin.qidong.function.Notification;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -17,13 +17,13 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.mojin.qidong.MainActivity;
 import com.mojin.qidong.R;
+import com.mojin.qidong.UI.MainActivity;
 
 import java.util.Random;
 
 public class AppNotification {
-	public static void send(Activity context, String Title, String textContent, int ID) {
+	public static void download(Activity context, String Title, String textContent, int ID) {
 		//设置服务
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -90,7 +90,7 @@ public class AppNotification {
 			int ID = r.nextInt(2147483647);
 
 			//设置服务
-			Intent intent = new Intent(context, CrashExceptionHandler.class);
+			Intent intent = new Intent(context, CopyReceiver.class);
 			intent.putExtra("errorText", errorText);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -116,7 +116,7 @@ public class AppNotification {
 			//获取剪贴板管理器：
 			ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 			// 创建普通字符型ClipData
-			ClipData mClipData = ClipData.newPlainText("Label", MainActivity.Log(e));
+			ClipData mClipData = ClipData.newPlainText("Label", e.getMessage());
 			// 将ClipData内容放到系统剪贴板里。
 			cm.setPrimaryClip(mClipData);
 		}
@@ -156,6 +156,7 @@ public class AppNotification {
 			boolean isOpened = manager.areNotificationsEnabled();
 			if (!isOpened) {
 				Toast.makeText(context, "检测到没有给予通知权限，请先给予权限", Toast.LENGTH_SHORT).show();
+
 				Intent intent = new Intent();
 				intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
 				if (Build.VERSION.SDK_INT >= 26) {
@@ -173,8 +174,8 @@ public class AppNotification {
 					//下载通知
 					NotificationChannel DownloadChannel = new NotificationChannel("ProgressNotification", "下载进度", NotificationManager.IMPORTANCE_MIN);
 					DownloadChannel.enableVibration(false);
-					DownloadChannel.setSound(null, null);
 					DownloadChannel.setImportance(NotificationManager.IMPORTANCE_MIN);
+					DownloadChannel.setSound(null, null);
 					NotificationManager DownloadNotificationManager = context.getSystemService(NotificationManager.class);
 					DownloadNotificationManager.createNotificationChannel(DownloadChannel);
 
