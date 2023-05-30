@@ -1,10 +1,8 @@
-package com.mojin.qidong.UI;
+package com.mojin.qidong.UI.Layout;
 
 import static com.mojin.qidong.function.Log.sendLog;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -12,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.gyf.immersionbar.BarHide;
-import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
@@ -24,18 +20,12 @@ import org.ppsspp.ppsspp.PpssppActivity;
 
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_main);
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-			//状态栏相关
-			ImmersionBar.with(this)
-					.hideBar(BarHide.FLAG_HIDE_BAR)
-					.init();
 
 			/*
 			 * 权限申请
@@ -79,5 +69,9 @@ public class MainActivity extends Activity {
 			//startActivity(intent);
 			//finish();
 		});
+	}
+
+	public void onBackPressed(){
+		super.onBackPressed();
 	}
 }

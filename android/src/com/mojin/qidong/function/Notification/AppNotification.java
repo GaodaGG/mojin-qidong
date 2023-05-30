@@ -18,7 +18,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.mojin.qidong.R;
-import com.mojin.qidong.UI.MainActivity;
+import com.mojin.qidong.UI.Layout.MainActivity;
 
 import java.util.Random;
 
