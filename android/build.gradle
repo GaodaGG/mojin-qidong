@@ -12,8 +12,8 @@ androidGitVersion {
 }
 
 dependencies {
-	//全局异常捕获：https://github.com/liangdepeng/CatchCrashLib
-	implementation 'com.github.liangdepeng:CatchCrashLib:v1.1'
+	// 权限请求框架：https://github.com/getActivity/XXPermissions
+	implementation 'com.github.getActivity:XXPermissions:18.2'
 	// 封神状态栏：https://github.com/gyf-dev/ImmersionBar
 	implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
