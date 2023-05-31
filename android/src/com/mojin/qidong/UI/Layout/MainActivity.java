@@ -10,15 +10,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.hjq.http.EasyConfig;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
+import com.mojin.qidong.BuildConfig;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.Notification.AppNotification;
 
 import org.ppsspp.ppsspp.PpssppActivity;
 
 import java.util.List;
+
+import okhttp3.OkHttpClient;
 
 public class MainActivity extends BaseActivity {
 	@Override
@@ -53,6 +57,14 @@ public class MainActivity extends BaseActivity {
 
 			//创建通知通道
 			AppNotification.NotificationPermission(this);
+
+			//初始化网络框架
+			OkHttpClient okHttpClient = new OkHttpClient.Builder()
+				.build();
+
+			EasyConfig.with(okHttpClient)
+				.setLogEnabled(true)
+				.
 		} catch (Exception e) {
 			sendLog(this, e);
 		}
