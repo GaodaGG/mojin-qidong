@@ -1,9 +1,9 @@
-package com.mojin.qidong.UI.Layout;
+package com.mojin.qidong.ui.layout;
 
 import android.os.Bundle;
 
 import com.mojin.qidong.R;
-import com.mojin.qidong.UI.ControlListen.HomeListener;
+import com.mojin.qidong.ui.controlListen.HomeListener;
 
 public class HomeActivity extends BaseActivity{
 	@Override

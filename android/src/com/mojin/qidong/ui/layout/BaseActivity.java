@@ -1,4 +1,4 @@
-package com.mojin.qidong.UI.Layout;
+package com.mojin.qidong.ui.layout;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;

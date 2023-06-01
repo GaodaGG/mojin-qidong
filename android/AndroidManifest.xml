@@ -34,6 +34,7 @@ android:installLocation="auto">
 
 <!-- I tried using android:maxSdkVersion="29" on WRITE/READ_EXTERNAL_STORAGE, but that made
     it so that in legacy mode, you can't ask for permission anymore. So removed that. -->
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
@@ -129,7 +130,7 @@ android:installLocation="auto">
 		android:resource="@drawable/ic_launcher" />
 
 	<activity
-		android:name=".UI.Layout.MainActivity"
+		android:name=".ui.layout.MainActivity"
 		android:exported="true"
 		android:screenOrientation="landscape"
 		android:theme="@style/Theme.PPSSPP">
@@ -145,7 +146,7 @@ android:installLocation="auto">
 	</activity>
 
 	<activity
-		android:name=".UI.Layout.HomeActivity"
+		android:name=".ui.layout.HomeActivity"
 		android:screenOrientation="landscape"
 		android:label="@string/HomeActivityName">
 

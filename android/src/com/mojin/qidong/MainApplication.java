@@ -18,7 +18,7 @@ public class MainApplication extends Application {
 
 		EasyConfig.with(okHttpClient)
 			.setLogEnabled(true)
-			.setServer("http://106.53.418.51:3100/")
+			.setServer("http://106.53.418.51:3100/api")
 			.setHandler(new RequestHandler(this))
 			// 设置请求重试次数
 			.setRetryCount(3)

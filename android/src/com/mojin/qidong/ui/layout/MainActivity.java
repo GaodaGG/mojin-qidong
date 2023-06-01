@@ -1,27 +1,21 @@
-package com.mojin.qidong.UI.Layout;
+package com.mojin.qidong.ui.layout;
 
 import static com.mojin.qidong.function.Log.sendLog;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.hjq.http.EasyConfig;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.Notification.AppNotification;
 
-import org.ppsspp.ppsspp.PpssppActivity;
-
 import java.util.List;
-
-import okhttp3.OkHttpClient;
 
 public class MainActivity extends BaseActivity {
 	@Override
@@ -34,13 +28,11 @@ public class MainActivity extends BaseActivity {
 			 * 权限申请
 			 */
 			XXPermissions.with(this)
-				.permission(Permission.Group.STORAGE)
+				.permission(Permission.MANAGE_EXTERNAL_STORAGE)
 				.request(new OnPermissionCallback() {
 					@Override
 					public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
-//						if(allGranted){
-//							Toast.makeText(MainActivity.this, "恭喜，您已将权限全部授权", Toast.LENGTH_SHORT).show();
-//						}
+
 					}
 					@Override
 					public void onDenied(@NonNull List<String> permissions, boolean doNotAskAgain) {
@@ -58,13 +50,6 @@ public class MainActivity extends BaseActivity {
 			AppNotification.NotificationPermission(this);
 
 
-//			//初始化网络框架
-//			OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//				.build();
-//
-//			EasyConfig.with(okHttpClient)
-//				.setLogEnabled(true)
-//				.
 		} catch (Exception e) {
 			sendLog(this, e);
 		}
