@@ -1,4 +1,4 @@
-package com.mojin.qidong.function.Download;
+package com.mojin.qidong.function.download;
 
 import android.app.Activity;
 
@@ -8,7 +8,7 @@ import com.hjq.http.lifecycle.ApplicationLifecycle;
 import com.hjq.http.listener.OnDownloadListener;
 import com.mojin.qidong.data.DownloadInfo;
 import com.mojin.qidong.function.Log;
-import com.mojin.qidong.function.Notification.AppNotification;
+import com.mojin.qidong.function.notification.AppNotification;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.mojin.qidong.function.Download;
+package com.mojin.qidong.function.download;
 
 import okhttp3.Headers;
 

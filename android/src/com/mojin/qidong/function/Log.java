@@ -2,7 +2,7 @@ package com.mojin.qidong.function;
 
 import android.content.Context;
 
-import com.mojin.qidong.function.Notification.AppNotification;
+import com.mojin.qidong.function.notification.AppNotification;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

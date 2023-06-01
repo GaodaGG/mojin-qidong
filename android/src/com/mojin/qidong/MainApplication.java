@@ -3,7 +3,7 @@ package com.mojin.qidong;
 import android.app.Application;
 
 import com.hjq.http.EasyConfig;
-import com.mojin.qidong.function.Download.RequestHandler;
+import com.mojin.qidong.function.download.RequestHandler;
 
 import okhttp3.OkHttpClient;
 

@@ -1,10 +1,10 @@
-package com.mojin.qidong.function.ControlEvent;
+package com.mojin.qidong.function.controlEvent;
 
 import android.app.Activity;
 import android.os.Environment;
 
 import com.mojin.qidong.data.DownloadInfo;
-import com.mojin.qidong.function.Download.DownloadFile;
+import com.mojin.qidong.function.download.DownloadFile;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.mojin.qidong.function.Notification;
+package com.mojin.qidong.function.notification;
 
 import android.content.BroadcastReceiver;
 import android.content.ClipData;

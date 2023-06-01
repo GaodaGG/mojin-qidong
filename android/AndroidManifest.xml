@@ -152,7 +152,7 @@ android:installLocation="auto">
 
 	</activity>
 
-	<receiver android:name=".function.Notification.CopyReceiver" />
+	<receiver android:name=".function.notification.CopyReceiver" />
 </application>
 
 </manifest>

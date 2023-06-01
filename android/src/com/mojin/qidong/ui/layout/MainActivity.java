@@ -13,7 +13,7 @@ import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
-import com.mojin.qidong.function.Notification.AppNotification;
+import com.mojin.qidong.function.notification.AppNotification;
 
 import java.util.List;
 

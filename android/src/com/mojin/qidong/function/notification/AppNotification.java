@@ -1,4 +1,4 @@
-package com.mojin.qidong.function.Notification;
+package com.mojin.qidong.function.notification;
 
 import android.app.Activity;
 import android.app.Notification;

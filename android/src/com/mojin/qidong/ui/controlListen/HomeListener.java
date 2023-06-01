@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.widget.Button;
 
 import com.mojin.qidong.R;
-import com.mojin.qidong.function.ControlEvent.HomeEvent;
+import com.mojin.qidong.function.controlEvent.HomeEvent;
 
 public class HomeListener {
 	/**
