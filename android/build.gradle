@@ -12,10 +12,11 @@ androidGitVersion {
 }
 
 dependencies {
+    //FastJson：https://github.com/alibaba/fastjson
+	implementation 'com.alibaba:fastjson:1.2.83'
 	// 网络请求框架：https://github.com/getActivity/EasyHttp
 	implementation 'com.github.getActivity:EasyHttp:11.8'
 	// OkHttp 框架：https://github.com/square/okhttp
-	// noinspection GradleDependency
 	implementation 'com.squareup.okhttp3:okhttp:3.12.13'
 	// 权限请求框架：https://github.com/getActivity/XXPermissions
 	implementation 'com.github.getActivity:XXPermissions:18.2'

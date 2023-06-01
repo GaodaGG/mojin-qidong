@@ -14,7 +14,6 @@ import com.hjq.http.EasyConfig;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
-import com.mojin.qidong.BuildConfig;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.Notification.AppNotification;
 
@@ -58,13 +57,14 @@ public class MainActivity extends BaseActivity {
 			//创建通知通道
 			AppNotification.NotificationPermission(this);
 
-			//初始化网络框架
-			OkHttpClient okHttpClient = new OkHttpClient.Builder()
-				.build();
 
-			EasyConfig.with(okHttpClient)
-				.setLogEnabled(true)
-				.
+//			//初始化网络框架
+//			OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//				.build();
+//
+//			EasyConfig.with(okHttpClient)
+//				.setLogEnabled(true)
+//				.
 		} catch (Exception e) {
 			sendLog(this, e);
 		}
@@ -72,14 +72,16 @@ public class MainActivity extends BaseActivity {
 
 		LinearLayout start = findViewById(R.id.Activitymain_LinearLayout);
 		start.setOnClickListener(v -> {
-			String path = "/storage/emulated/0/Android/data/com.mojin.qidong/files/PSP/GAME/魔法禁书目录.iso";//指定的文件位置
-			Intent intent = new Intent(this, PpssppActivity.class);
-			intent.addCategory(Intent.CATEGORY_DEFAULT);
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			Uri uri = Uri.parse(path);
-			intent.setDataAndType(uri, "*/*");
-			//startActivity(intent);
-			//finish();
+//			String path = "/storage/emulated/0/Android/data/com.mojin.qidong/files/PSP/GAME/魔法禁书目录.iso";//指定的文件位置
+//			Intent intent = new Intent(this, PpssppActivity.class);
+//			intent.addCategory(Intent.CATEGORY_DEFAULT);
+//			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//			Uri uri = Uri.parse(path);
+//			intent.setDataAndType(uri, "*/*");
+//			//startActivity(intent);
+//			//finish();
+			Intent intent = new Intent(this, HomeActivity.class);
+			startActivity(intent);
 		});
 	}
 
