@@ -3,6 +3,7 @@ package com.mojin.qidong.ui.layout;
 import static com.mojin.qidong.function.Log.sendLog;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.notification.AppNotification;
+
+import org.ppsspp.ppsspp.PpssppActivity;
 
 import java.util.List;
 
@@ -49,22 +52,16 @@ public class MainActivity extends BaseActivity {
 			//创建通知通道
 			AppNotification.NotificationPermission(this);
 
+			//第一次进入应用
+			firstRun();
 
 		} catch (Exception e) {
 			sendLog(this, e);
 		}
 
-
 		LinearLayout start = findViewById(R.id.Activitymain_LinearLayout);
 		start.setOnClickListener(v -> {
-//			String path = "/storage/emulated/0/Android/data/com.mojin.qidong/files/PSP/GAME/魔法禁书目录.iso";//指定的文件位置
-//			Intent intent = new Intent(this, PpssppActivity.class);
-//			intent.addCategory(Intent.CATEGORY_DEFAULT);
-//			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			Uri uri = Uri.parse(path);
-//			intent.setDataAndType(uri, "*/*");
-//			//startActivity(intent);
-//			//finish();
+
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 		});
@@ -72,5 +69,18 @@ public class MainActivity extends BaseActivity {
 
 	public void onBackPressed(){
 		super.onBackPressed();
+	}
+
+	private void firstRun() {
+		SharedPreferences sharedPreferences = getSharedPreferences("FirstRun",0);
+		boolean firstRun = sharedPreferences.getBoolean("First",true);
+		if (firstRun){
+			sharedPreferences.edit().putBoolean("First",false).apply();
+			Toast.makeText(this,"生成模拟器配置文件中",Toast.LENGTH_LONG).show();
+
+			//打开ppsspp使其生成配置文件
+			Intent intent = new Intent(this, PpssppActivity.class);
+			startActivity(intent);
+		}
 	}
 }

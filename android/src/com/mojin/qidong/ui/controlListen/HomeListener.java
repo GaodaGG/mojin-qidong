@@ -22,5 +22,10 @@ public class HomeListener {
 		downloadButton.setOnClickListener(v -> {
 			HomeEvent.buttonEvent();
 		});
+
+		Button downloadButton2 = mActivity.findViewById(R.id.downloadButton2);
+		downloadButton2.setOnClickListener(v -> {
+			HomeEvent.buttonEvent2();
+		});
 	}
 }
