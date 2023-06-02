@@ -31,44 +31,55 @@ public class DownloadFile {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				EasyHttp.download(ApplicationLifecycle.getInstance())
-					.url(getDownloadURL(getDownloadJSON(downloadInfo.getCloudPath())))
-					.file(downloadInfo.getFile())
-					.listener(new OnDownloadListener() {
-						String totalByte = "0";
-						String downloadByte = "0";
+				try {
+					//创建文件
+					if (!downloadInfo.getFile().exists()) {
+						//noinspection ResultOfMethodCallIgnored
+						downloadInfo.getFile().createNewFile();
+					}
 
-						@Override
-						public void onStart(File file) {
-							AppNotification.download(mActivity, downloadInfo.getName(), "0%", downloadInfo.getNotificationID());
-						}
+					//下载文件
+					EasyHttp.download(ApplicationLifecycle.getInstance())
+						.url(getDownloadURL(getDownloadJSON(downloadInfo.getCloudPath())))
+						.file(downloadInfo.getFile())
+						.listener(new OnDownloadListener() {
+							String totalByte = "0";
+							String downloadByte = "0";
 
-						@Override
-						public void onProgress(File file, int progress) {
-							AppNotification.update(mActivity, downloadInfo.getName(), downloadByte + "/" + totalByte + " ● " + progress + "%", downloadInfo.getNotificationID(), progress);
-						}
+							@Override
+							public void onStart(File file) {
+								AppNotification.download(mActivity, downloadInfo.getName(), "0%", downloadInfo.getNotificationID());
+							}
 
-						@Override
-						public void onByte(File file, long totalByte, long downloadByte) {
-							this.totalByte = b2mb(totalByte);
-							this.downloadByte = b2mb(downloadByte);
-						}
+							@Override
+							public void onProgress(File file, int progress) {
+								AppNotification.update(mActivity, downloadInfo.getName(), downloadByte + "/" + totalByte + " ● " + progress + "%", downloadInfo.getNotificationID(), progress);
+							}
 
-						@Override
-						public void onComplete(File file) {
-							AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载成功", downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
-						}
+							@Override
+							public void onByte(File file, long totalByte, long downloadByte) {
+								this.totalByte = b2mb(totalByte);
+								this.downloadByte = b2mb(downloadByte);
+							}
 
-						@Override
-						public void onError(File file, Exception e) {
-							AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载失败：" + e.getMessage(), downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
-						}
+							@Override
+							public void onComplete(File file) {
+								AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载成功", downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
+							}
 
-						@Override
-						public void onEnd(File file) {
-							AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载成功", downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
-						}
-					}).start();
+							@Override
+							public void onError(File file, Exception e) {
+								AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载失败：" + e.getMessage(), downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
+							}
+
+							@Override
+							public void onEnd(File file) {
+								AppNotification.ordinary(mActivity, downloadInfo.getName(), "下载成功", downloadInfo.getNotificationID(), downloadInfo.getPendingIntent(), false);
+							}
+						}).start();
+				} catch (Exception e){
+					Log.sendLog(mActivity, e);
+				}
 			}
 		}).start();
 	}

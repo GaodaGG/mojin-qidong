@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.mojin.qidong.R;
 import com.mojin.qidong.ui.controlListen.HomeListener;
 
-public class HomeActivity extends BaseActivity{
+public class HomeActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
