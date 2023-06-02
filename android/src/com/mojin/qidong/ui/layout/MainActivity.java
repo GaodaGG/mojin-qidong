@@ -3,7 +3,6 @@ package com.mojin.qidong.ui.layout;
 import static com.mojin.qidong.function.Log.sendLog;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -14,9 +13,8 @@ import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
+import com.mojin.qidong.function.FirstRun;
 import com.mojin.qidong.function.notification.AppNotification;
-
-import org.ppsspp.ppsspp.PpssppActivity;
 
 import java.util.List;
 
@@ -35,8 +33,8 @@ public class MainActivity extends BaseActivity {
 				.request(new OnPermissionCallback() {
 					@Override
 					public void onGranted(@NonNull List<String> permissions, boolean allGranted) {
-
 					}
+
 					@Override
 					public void onDenied(@NonNull List<String> permissions, boolean doNotAskAgain) {
 						// 如果是被永久拒绝就跳转到应用权限系统设置页面
@@ -53,7 +51,7 @@ public class MainActivity extends BaseActivity {
 			AppNotification.NotificationPermission(this);
 
 			//第一次进入应用
-			firstRun();
+			new FirstRun(this).start();
 
 		} catch (Exception e) {
 			sendLog(this, e);
@@ -67,20 +65,7 @@ public class MainActivity extends BaseActivity {
 		});
 	}
 
-	public void onBackPressed(){
+	public void onBackPressed() {
 		super.onBackPressed();
-	}
-
-	private void firstRun() {
-		SharedPreferences sharedPreferences = getSharedPreferences("FirstRun",0);
-		boolean firstRun = sharedPreferences.getBoolean("First",true);
-		if (firstRun){
-			sharedPreferences.edit().putBoolean("First",false).apply();
-			Toast.makeText(this,"生成模拟器配置文件中",Toast.LENGTH_LONG).show();
-
-			//打开ppsspp使其生成配置文件
-			Intent intent = new Intent(this, PpssppActivity.class);
-			startActivity(intent);
-		}
 	}
 }

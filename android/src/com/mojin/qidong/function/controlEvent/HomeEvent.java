@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.mojin.qidong.data.DownloadInfo;
+import com.mojin.qidong.function.download.DownloadInfo;
 import com.mojin.qidong.function.download.DownloadFile;
 
 import org.ppsspp.ppsspp.PpssppActivity;

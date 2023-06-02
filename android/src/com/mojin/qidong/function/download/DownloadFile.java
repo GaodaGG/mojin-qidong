@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.hjq.http.EasyHttp;
 import com.hjq.http.lifecycle.ApplicationLifecycle;
 import com.hjq.http.listener.OnDownloadListener;
-import com.mojin.qidong.data.DownloadInfo;
 import com.mojin.qidong.function.Log;
 import com.mojin.qidong.function.notification.AppNotification;
 
