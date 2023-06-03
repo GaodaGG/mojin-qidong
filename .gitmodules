@@ -44,3 +44,6 @@
 [submodule "cpu_features"]
 	path = ext/cpu_features
 	url = https://github.com/google/cpu_features.git
+[submodule "armips/ext/filesystem"]
+	path = armips/ext/filesystem
+	url = https://github.com/Kingcom/filesystem.git
