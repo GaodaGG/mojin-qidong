@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.mojin.qidong.function.setting.SettingInfo;
+import com.mojin.qidong.function.setting.SettingUtil;
+
 import org.ppsspp.ppsspp.PpssppActivity;
 
 public class FirstRun {
@@ -39,6 +42,12 @@ public class FirstRun {
 	}
 
 	private void initSetting(){
-
+		SettingInfo settingInfo = new SettingInfo(mActivity);
+		SettingUtil.init(settingInfo);
+		String[] key = settingInfo.getKey();
+		String[] keyDefault = settingInfo.getKeyDefault();
+		for (int i = 0; i < key.length ; i++) {
+			SettingUtil.addSettingMessage(key[i], keyDefault[i]);
+		}
 	}
 }
