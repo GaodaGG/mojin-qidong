@@ -2,6 +2,7 @@ package com.mojin.qidong.ui.controlListen;
 
 import android.app.Activity;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.controlEvent.HomeEvent;
@@ -18,14 +19,16 @@ public class HomeListener {
 	}
 
 	public void start() {
-		Button downloadButton = mActivity.findViewById(R.id.downloadButton);
-		downloadButton.setOnClickListener(v -> {
+		LinearLayout installGame = mActivity.findViewById(R.id.installGame);
+		installGame.setOnClickListener(v -> {
 			HomeEvent.buttonEvent();
 		});
 
-		Button downloadButton2 = mActivity.findViewById(R.id.downloadButton2);
-		downloadButton2.setOnClickListener(v -> {
+		LinearLayout deleteGame = mActivity.findViewById(R.id.deleteGame);
+		deleteGame.setOnClickListener(v -> {
 			HomeEvent.buttonEvent2();
 		});
+
+
 	}
 }
