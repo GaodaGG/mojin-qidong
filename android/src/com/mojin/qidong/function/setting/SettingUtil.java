@@ -10,10 +10,19 @@ public class SettingUtil {
 	}
 
 	public static String getSettingMessage(String key){
-		return mSharedPcreferences.getString(key, "获取失败");
+		Object message = mSharedPcreferences.getAll().get(key);
+		if (message == null){
+			return "获取失败";
+		} else {
+			return message.toString();
+		}
 	}
 
-	public static void addSettingMessage(String key, String message){
-		mSharedPcreferences.edit().putString(key, message).apply();
+	public static void addSettingMessage(String key, Object message){
+		if (message instanceof Boolean) {
+			mSharedPcreferences.edit().putBoolean(key, Boolean.parseBoolean(message.toString())).apply();
+		} else {
+			mSharedPcreferences.edit().putString(key, message.toString()).apply();
+		}
 	}
 }

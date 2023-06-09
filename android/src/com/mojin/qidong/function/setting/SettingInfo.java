@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 public class SettingInfo {
 	private final SharedPreferences mSharedPcreferences;
 	private static final String[] mKey = {"appUpdate", "autoWindow", "networkChange", "networkPassword"};
-	private static final String[] mKeyDefault = {"true", "false", "御坂网络", "default"};
+	private static final Object[] mKeyDefault = {true, false, "御坂网络", "default"};
 
 
 
@@ -19,7 +19,7 @@ public class SettingInfo {
 		return mKey;
 	}
 
-	public String[] getKeyDefault(){
+	public Object[] getKeyDefault(){
 		return mKeyDefault;
 	}
 

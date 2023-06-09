@@ -15,8 +15,4 @@ public class HomeActivity extends BaseActivity {
 		new HomeListener(this)
 			.start();
 	}
-
-	public void onBackPressed(){
-		super.onBackPressed();
-	}
 }

@@ -15,6 +15,8 @@ import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.FirstRun;
 import com.mojin.qidong.function.notification.AppNotification;
+import com.mojin.qidong.function.setting.SettingInfo;
+import com.mojin.qidong.function.setting.SettingUtil;
 
 import java.util.List;
 
@@ -50,8 +52,14 @@ public class MainActivity extends BaseActivity {
 			//创建通知通道
 			AppNotification.NotificationPermission(this);
 
+			//初始化设置
+			SettingInfo settingInfo = new SettingInfo(this);
+			SettingUtil.init(settingInfo);
+
 			//第一次进入应用
-			new FirstRun(this).start();
+			if ("获取失败".equals(SettingUtil.getSettingMessage("FirstRun"))) {
+				new FirstRun(this).start();
+			}
 
 		} catch (Exception e) {
 			sendLog(this, e);
@@ -63,9 +71,5 @@ public class MainActivity extends BaseActivity {
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 		});
-	}
-
-	public void onBackPressed() {
-		super.onBackPressed();
 	}
 }

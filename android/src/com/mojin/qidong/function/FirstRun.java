@@ -22,6 +22,7 @@ public class FirstRun {
 
 	public void start(){
 		try {
+			msharedPreferences = mActivity.getSharedPreferences("Setting", Context.MODE_PRIVATE);
 			initPPSSPP();
 			initSetting();
 		} catch (Exception e) {
@@ -30,7 +31,6 @@ public class FirstRun {
 	}
 
 	private void initPPSSPP() {
-		msharedPreferences = mActivity.getSharedPreferences("Setting", Context.MODE_PRIVATE);
 		if (msharedPreferences.getBoolean("FirstRun",true)){
 			msharedPreferences.edit().putBoolean("FirstRun",false).apply();
 			Toast.makeText(mActivity,"生成模拟器配置文件中",Toast.LENGTH_LONG).show();
@@ -43,9 +43,8 @@ public class FirstRun {
 
 	private void initSetting(){
 		SettingInfo settingInfo = new SettingInfo(mActivity);
-		SettingUtil.init(settingInfo);
 		String[] key = settingInfo.getKey();
-		String[] keyDefault = settingInfo.getKeyDefault();
+		Object[] keyDefault = settingInfo.getKeyDefault();
 		for (int i = 0; i < key.length ; i++) {
 			SettingUtil.addSettingMessage(key[i], keyDefault[i]);
 		}
