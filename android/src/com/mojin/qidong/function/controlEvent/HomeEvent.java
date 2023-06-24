@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.mojin.qidong.function.ToolsWindow;
 import com.mojin.qidong.function.download.DownloadInfo;
 import com.mojin.qidong.function.download.DownloadFile;
 
@@ -38,5 +39,10 @@ public class HomeEvent {
 		Uri uri = Uri.parse(path);
 		intent.setDataAndType(uri, "*/*");
 		mActivity.startActivity(intent);
+	}
+
+	public static void buttonEvent3() {
+		ToolsWindow.init(mActivity);
+		ToolsWindow.show();
 	}
 }

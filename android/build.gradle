@@ -12,6 +12,8 @@ androidGitVersion {
 }
 
 dependencies {
+	// 悬浮窗框架：https://github.com/getActivity/EasyWindow
+	implementation 'com.github.getActivity:EasyWindow:10.0'
     //FastJson：https://github.com/alibaba/fastjson
 	implementation 'com.alibaba:fastjson:1.2.83'
 	// 网络请求框架：https://github.com/getActivity/EasyHttp
@@ -137,7 +139,7 @@ android {
 				}
 			}
 			ndk {
-				abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+				abiFilters 'armeabi-v7a', 'arm64-v8a'
 			}
 		}
 		gold {
@@ -156,7 +158,7 @@ android {
 				}
 			}
 			ndk {
-				abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+				abiFilters 'armeabi-v7a', 'arm64-v8a'
 			}
 		}
 		vr {
@@ -176,7 +178,8 @@ android {
 				}
 			}
 			ndk {
-				abiFilters 'arm64-v8a'
+				//noinspection ChromeOsAbiSupport
+				abiFilters 'armeabi-v7a', 'arm64-v8a'
 			}
 		}
 	}

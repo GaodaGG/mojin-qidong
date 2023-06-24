@@ -24,5 +24,8 @@ public class MainApplication extends Application {
 			// 设置请求重试次数
 			.setRetryCount(3)
 			.into();
+
 	}
+
+
 }

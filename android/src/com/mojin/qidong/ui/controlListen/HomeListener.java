@@ -29,6 +29,9 @@ public class HomeListener {
 			HomeEvent.buttonEvent2();
 		});
 
-
+		LinearLayout optimize = mActivity.findViewById(R.id.optimize);
+		optimize.setOnClickListener(v -> {
+			HomeEvent.buttonEvent3();
+		});
 	}
 }
