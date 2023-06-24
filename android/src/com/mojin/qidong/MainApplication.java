@@ -3,6 +3,7 @@ package com.mojin.qidong;
 import android.app.Application;
 
 import com.hjq.http.EasyConfig;
+import com.mojin.qidong.function.ToolsWindow;
 import com.mojin.qidong.function.download.RequestHandler;
 
 import okhttp3.OkHttpClient;
@@ -24,8 +25,6 @@ public class MainApplication extends Application {
 			// 设置请求重试次数
 			.setRetryCount(3)
 			.into();
-
 	}
-
 
 }

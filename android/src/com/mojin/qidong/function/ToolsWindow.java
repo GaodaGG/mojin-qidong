@@ -17,7 +17,7 @@ public class ToolsWindow {
 
 	public static void init(Activity activity){
 		mActivity = activity;
-		toolsWindow = new EasyWindow<>(activity)
+		toolsWindow = new EasyWindow<>(activity.getApplication())
 			.setContentView(R.layout.tools_window)
 			.setDraggable();
 	}
