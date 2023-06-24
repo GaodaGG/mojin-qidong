@@ -58,10 +58,6 @@ public class MainActivity extends BaseActivity {
 
 		LinearLayout start = findViewById(R.id.Activitymain_LinearLayout);
 		start.setOnClickListener(v -> {
-			for (int i = 0; i < 2; i++) {
-				AppNotification.error(this, "Copy" + i);
-			}
-
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 		});
