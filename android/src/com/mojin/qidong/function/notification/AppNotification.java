@@ -37,13 +37,13 @@ public class AppNotification {
 
 		//创建通知
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ProgressNotification")
-				.setSmallIcon(R.drawable.avatar)
-				.setContentTitle(Title)
-				.setContentText(textContent)
-				.setContentIntent(pendingIntent)
-				.setProgress(100, 0, false)
-				.setOngoing(false)
-				.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+			.setSmallIcon(R.drawable.avatar)
+			.setContentTitle(Title)
+			.setContentText(textContent)
+			.setContentIntent(pendingIntent)
+			.setProgress(100, 0, false)
+			.setOngoing(false)
+			.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 		//发送通知
 		NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -65,13 +65,13 @@ public class AppNotification {
 
 		//创建通知
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ProgressNotification")
-				.setSmallIcon(R.drawable.avatar)
-				.setContentTitle(Title)
-				.setContentText(textContent)
-				.setContentIntent(pendingIntent)
-				.setProgress(100, progress, false)
-				.setOngoing(true)
-				.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+			.setSmallIcon(R.drawable.avatar)
+			.setContentTitle(Title)
+			.setContentText(textContent)
+			.setContentIntent(pendingIntent)
+			.setProgress(100, progress, false)
+			.setOngoing(true)
+			.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 		//修改通知
 		if (progress == 100) {
@@ -92,22 +92,23 @@ public class AppNotification {
 			//设置服务
 			Intent intent = new Intent(context, CopyReceiver.class);
 			intent.putExtra("errorText", errorText);
+			intent.putExtra("notificationID", ID);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
 			PendingIntent pendingIntent;
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-				pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+				pendingIntent = PendingIntent.getBroadcast(context, ID, intent, PendingIntent.FLAG_MUTABLE);
 			} else {
 				pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 			}
 
 			//创建通知
 			NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ErrorNotification")
-					.setSmallIcon(R.drawable.avatar)
-					.setContentTitle("应用发生了意想不到的错误")
-					.setContentText(errorText)
-					.setPriority(NotificationCompat.PRIORITY_DEFAULT)
-					.addAction(R.drawable.avatar, "复制报错", pendingIntent);
+				.setSmallIcon(R.drawable.avatar)
+				.setContentTitle("应用发生了意想不到的错误")
+				.setContentText(errorText)
+				.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+				.addAction(R.drawable.avatar, "复制报错", pendingIntent);
 
 			//发送通知
 			NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -125,12 +126,12 @@ public class AppNotification {
 	public static void ordinary(Context context, String Title, String textContent, int ID, PendingIntent pendingIntent, boolean Delete) {
 		//创建通知
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "OrdinaryNotification")
-				.setSmallIcon(R.drawable.avatar)
-				.setContentTitle(Title)
-				.setContentText(textContent)
-				.setPriority(NotificationCompat.PRIORITY_DEFAULT)
-				.setOngoing(Delete)
-				.setAutoCancel(true);
+			.setSmallIcon(R.drawable.avatar)
+			.setContentTitle(Title)
+			.setContentText(textContent)
+			.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+			.setOngoing(Delete)
+			.setAutoCancel(true);
 
 		//设置通知点击事件
 		if (pendingIntent != null) {
@@ -162,10 +163,11 @@ public class AppNotification {
 				if (Build.VERSION.SDK_INT >= 26) {
 					intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
 					intent.putExtra(Notification.EXTRA_CHANNEL_ID, context.getApplicationInfo().uid);
-				} else if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT <= 25) {
-					intent.putExtra("app_package", context.getPackageName());
-					intent.putExtra("app_uid", context.getApplicationInfo().uid);
-				}
+				} else //noinspection ConstantValue
+					if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT <= 25) {
+						intent.putExtra("app_package", context.getPackageName());
+						intent.putExtra("app_uid", context.getApplicationInfo().uid);
+					}
 				context.startActivity(intent);
 				/*
 				 *检查通知渠道

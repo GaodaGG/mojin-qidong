@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-
 /**
  * 系统处理异常类，处理整个APP的异常
  */
@@ -22,5 +21,7 @@ public class CopyReceiver extends BroadcastReceiver {
 		cm.setPrimaryClip(mClipData);
 		Toast.makeText(context, "已复制", Toast.LENGTH_SHORT).show();
 	}
+
+
 }
 

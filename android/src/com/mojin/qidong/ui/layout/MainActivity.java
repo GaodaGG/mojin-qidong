@@ -5,20 +5,12 @@ import static com.mojin.qidong.function.Log.sendLog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.hjq.permissions.OnPermissionCallback;
-import com.hjq.permissions.Permission;
-import com.hjq.permissions.XXPermissions;
 import com.mojin.qidong.R;
 import com.mojin.qidong.function.FirstRun;
 import com.mojin.qidong.function.notification.AppNotification;
 import com.mojin.qidong.function.setting.SettingInfo;
 import com.mojin.qidong.function.setting.SettingUtil;
-
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
 	@Override
@@ -29,7 +21,6 @@ public class MainActivity extends BaseActivity {
 
 			/*
 			 * 权限申请
-			 */
 			XXPermissions.with(this)
 				.permission(Permission.MANAGE_EXTERNAL_STORAGE)
 				.request(new OnPermissionCallback() {
@@ -48,7 +39,7 @@ public class MainActivity extends BaseActivity {
 						}
 					}
 				});
-
+			 */
 			//创建通知通道
 			AppNotification.NotificationPermission(this);
 
@@ -67,6 +58,9 @@ public class MainActivity extends BaseActivity {
 
 		LinearLayout start = findViewById(R.id.Activitymain_LinearLayout);
 		start.setOnClickListener(v -> {
+			for (int i = 0; i < 2; i++) {
+				AppNotification.error(this, "Copy" + i);
+			}
 
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);

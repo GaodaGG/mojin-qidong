@@ -8,6 +8,7 @@ import com.mojin.qidong.function.download.RequestHandler;
 import okhttp3.OkHttpClient;
 
 public class MainApplication extends Application {
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
